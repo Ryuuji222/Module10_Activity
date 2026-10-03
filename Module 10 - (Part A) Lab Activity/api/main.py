@@ -26,15 +26,14 @@ DATABASE_URL = (
 
 # MODIFY THE SQL QUERY BELOW TO RETURN THE REQUIRED SUMMARY DATA ----------------------------------
 SUMMARY_SQL = """
-SELECT
+SELECT 
     c.course_code,
     c.course_title,
     COUNT(e.student_id) AS total_students
 FROM courses c
-LEFT JOIN enrollments e
-    ON c.course_id = e.course_id
+LEFT JOIN enrollments e ON c.course_id = e.course_id
 GROUP BY c.course_id, c.course_code, c.course_title
-ORDER BY c.course_id
+ORDER BY total_students DESC, c.course_code ASC;
 """
 # END OF MODIFICATION ---------------------------------
 
